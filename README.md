@@ -58,6 +58,17 @@ fdisk -l
    sync
    reboot
    ```
+   
+### BE3600 路由器
+
+1. **更改区域设置**：
+   BE3600 路由器的区域设置信息存储在 `/dev/mtdblock11`。以下命令将区域代码 "US" 写入该分区的指定位置，`conv=notrunc` 确保不会截断现有数据。`bs=1` 指定块大小为 1 字节，`seek=136` 指定从偏移量 136 开始写入数据。`sync` 确保所有写入操作已完成，`reboot` 重新启动设备以使更改生效。
+   ```bash
+   hexdump -C -n 512 /dev/mtdblock11 # 确认输出包含 CN 字样
+   echo -n "US" |dd of=/dev/mtdblock11 conv=notrunc bs=1 seek=136
+   sync
+   reboot
+   ```
 
 ## 重置固件
 成功更改区域后，建议重置固件以确保所有设置正确应用。重置操作可以通过路由器的管理界面执行。
