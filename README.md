@@ -20,7 +20,7 @@ fdisk -l
 ### MT3600BE路由器
 
 1. **更改区域设置**：
-   MT3000 路由器的区域设置信息存储在 `/dev/mtdblock3`。以下命令将区域代码 "US" 写入该分区的指定位置。`bs=1` 指定块大小为 1 字节，`seek=16520` 指定从偏移量 16520开始写入数据。`sync` 确保所有写入操作已完成，`reboot` 重新启动设备以使更改生效。dd if=/dev/mtdblock3 bs=1 count=8 skip=16520 2>/dev/null | hexdump -C用于查看是否更改
+   MT3600 路由器的区域设置信息存储在 `/dev/mtdblock3`。以下命令将区域代码 "US" 写入该分区的指定位置。`bs=1` 指定块大小为 1 字节，`seek=16520` 指定从偏移量 16520开始写入数据。`sync` 确保所有写入操作已完成，`reboot` 重新启动设备以使更改生效。dd if=/dev/mtdblock3 bs=1 count=8 skip=16520 2>/dev/null | hexdump -C用于查看是否更改
    ```bash
    dd if=/dev/mtdblock3 bs=1 count=8 skip=16520 2>/dev/null | hexdump -C
    echo -n "US" | dd of=/dev/mtdblock3 bs=1 seek=16520 conv=notrunc 2>&1
