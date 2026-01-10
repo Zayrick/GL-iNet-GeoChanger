@@ -80,6 +80,34 @@ fdisk -l
    reboot
    ```
 
+### GL-BE6500 路由器
+
+1. **查找及更改区域设置**：
+   GL-BE6500 路由器的区域设置信息存储在 `/dev/mtdblock11`。首先确认当前区域码位置，然后更改为 "US"。`bs=1` 指定块大小为 1 字节，`seek=136` 指定从偏移量 136 开始写入数据。
+
+   查看当前区域码：
+   ```bash
+   hexdump -C /dev/mtdblock11
+   # 预期输出中应包含当前区域码，如 CN
+   ```
+
+   替换为 US：
+   ```bash
+   echo "US" | dd of=/dev/mtdblock11 bs=1 seek=136
+   ```
+
+   验证更改：
+   ```bash
+   hexdump -C /dev/mtdblock11
+   # 确认输出中区域码已变为 US
+   ```
+
+   保存并重启：
+   ```bash
+   sync
+   reboot
+   ```
+
 ## 重置固件
 成功更改区域后，建议重置固件以确保所有设置正确应用。重置操作可以通过路由器的管理界面执行。
 
