@@ -205,3 +205,9 @@ fdisk -l
 - 将文件名后缀为 `zh-cn` 的文件替换为 `zh-tw` 文件。
 
 通过以上步骤，您可以在 GL iNet 路由器上成功更改区域设置。再次提醒，请在操作过程中保持高度警觉，以避免不必要的设备故障。
+
+## 贡献者
+
+<a href="https://github.com/Zayrick/GL-iNet-GeoChanger/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Zayrick/GL-iNet-GeoChanger" />
+</a>
